@@ -6,7 +6,7 @@
 #    By: mring <mring@student.42heilbronn.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/30 16:15:57 by mring             #+#    #+#              #
-#    Updated: 2025/03/31 20:30:37 by mring            ###   ########.fr        #
+#    Updated: 2025/04/01 13:49:34 by mring            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ LIBMLX			:= ./MLX42
 HEADERS			:= -I ./include -I $(LIBMLX)/include
 LIBS			:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
 SRC_DIR			:= src
-SRC				:= main hooks fractals utils
+SRC				:= main hooks fractals utils init
 SRCS			:= $(addsuffix .c, $(SRC))
 OBJ_DIR			:= obj
 OBJS			:= $(SRCS:%.c=$(OBJ_DIR)/%.o)

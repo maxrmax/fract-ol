@@ -6,7 +6,7 @@
 /*   By: mring <mring@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 16:04:23 by mring             #+#    #+#             */
-/*   Updated: 2025/03/31 19:33:53 by mring            ###   ########.fr       */
+/*   Updated: 2025/04/01 13:48:27 by mring            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_fractol
 	float		zoom;
 	int			set;
 	int			max_iter;
+	int			iter;
 	double		min_x;
 	double		min_y;
 	double		max_x;
@@ -48,13 +49,13 @@ typedef struct s_fractol
 }				t_fractol;
 
 void			redraw(t_fractol *fractol);
-void			param(char **av, t_fractol *fractol);
 void			init(t_fractol *fractol, int ac, char **av);
 void			prompt(void);
 void			scroll_func(double xdelta, double ydelta, void *param);
 void			key_func(mlx_key_data_t mkd, void *data);
 int				calculate_mandelbrot(double x, double y, t_fractol *fractol);
 int				calculate_julia(double x, double y, t_fractol *fractol);
+int				calculate_burning_ship(double x, double y, t_fractol *data);
 float			ft_atof(const char *str);
 
 #endif
