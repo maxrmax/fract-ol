@@ -6,7 +6,7 @@
 #    By: mring <mring@student.42heilbronn.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/08 10:34:52 by mring             #+#    #+#              #
-#    Updated: 2025/03/18 17:07:41 by mring            ###   ########.fr        #
+#    Updated: 2025/04/01 14:22:05 by mring            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,12 +26,9 @@ PRINTF_DIR = ./ft_printf
 PRINTF_SRC = ft_printf ft_printf_print
 
 # Add get_next_line sources
-GNL_DIR = get_next_line
-GNL_SRC = get_next_line_bonus get_next_line_utils_bonus
 
 # Append .c to all sources
 SRCS = $(addsuffix .c, $(SRC)) \
-       $(addprefix $(GNL_DIR)/, $(addsuffix .c, $(GNL_SRC))) \
        $(addprefix $(PRINTF_DIR)/, $(addsuffix .c, $(PRINTF_SRC)))
 
 # Object files
