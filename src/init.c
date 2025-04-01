@@ -6,7 +6,7 @@
 /*   By: mring <mring@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 13:47:58 by mring             #+#    #+#             */
-/*   Updated: 2025/04/01 14:04:45 by mring            ###   ########.fr       */
+/*   Updated: 2025/04/01 15:19:36 by mring            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ static uint32_t	get_color(t_fractol *fractol)
 	return ((r << 24) | (g << 16) | (b << 8) | 0xFF);
 }
 
-static void	set_check(double mapped_x, double mapped_y, t_fractol *fractol)
+static void	calculate_fractal(double mapped_x, double mapped_y,
+		t_fractol *fractol)
 {
 	if (fractol->set == 1)
 		fractol->iter = calculate_mandelbrot(mapped_x, mapped_y, fractol);
@@ -55,7 +56,7 @@ void	redraw(t_fractol *fractol)
 					/ WIDTH) / fractol->zoom + fractol->offset_x;
 			mapped_y = (fractol->min_y + (y * (fractol->max_y - fractol->min_y))
 					/ HEIGHT) / fractol->zoom + fractol->offset_y;
-			set_check(mapped_x, mapped_y, fractol);
+			calculate_fractal(mapped_x, mapped_y, fractol);
 			mlx_put_pixel(fractol->img, x, y, get_color(fractol));
 			y++;
 		}
@@ -77,7 +78,6 @@ static void	param(char **av, t_fractol *fractol)
 		}
 		else if (fractol->ac == 4)
 		{
-			printf("test");
 			fractol->julia_r = ft_atof(av[2]);
 			fractol->julia_i = ft_atof(av[3]);
 		}
@@ -93,7 +93,14 @@ static void	param(char **av, t_fractol *fractol)
 void	init(t_fractol *fractol, int ac, char **av)
 {
 	fractol->mlx = mlx_init(WIDTH, HEIGHT, "fract-ol", false);
+	if (!fractol->mlx)
+		exit(1);
 	fractol->img = mlx_new_image(fractol->mlx, WIDTH, HEIGHT);
+	if (!fractol->img)
+	{
+		mlx_terminate(fractol->mlx);
+		exit(1);
+	}
 	fractol->ac = ac;
 	fractol->av = av;
 	fractol->max_iter = 100;

@@ -6,7 +6,7 @@
 /*   By: mring <mring@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 16:04:23 by mring             #+#    #+#             */
-/*   Updated: 2025/04/01 13:48:27 by mring            ###   ########.fr       */
+/*   Updated: 2025/04/01 15:05:21 by mring            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,40 +19,35 @@
 # include <stdio.h>
 # include <stdlib.h>
 
-# define WIDTH 1240
-# define HEIGHT 860
-typedef struct s_vec2
-{
-	double		x;
-	double		y;
-}				t_vec2;
+# define WIDTH 860
+# define HEIGHT 640
 
 typedef struct s_fractol
 {
 	mlx_t		*mlx;
 	mlx_image_t	*img;
-	int			ac;
 	char		**av;
-	float		zoom;
+	int			ac;
 	int			set;
 	int			max_iter;
 	int			iter;
+	float		zoom;
 	double		min_x;
 	double		min_y;
 	double		max_x;
 	double		max_y;
 	double		julia_r;
 	double		julia_i;
-	uint32_t	color_shift;
 	double		offset_x;
 	double		offset_y;
+	uint32_t	color_shift;
 }				t_fractol;
 
 void			redraw(t_fractol *fractol);
 void			init(t_fractol *fractol, int ac, char **av);
 void			prompt(void);
 void			scroll_func(double xdelta, double ydelta, void *param);
-void			key_func(mlx_key_data_t mkd, void *data);
+void			key_func(mlx_key_data_t mkd, void *param);
 int				calculate_mandelbrot(double x, double y, t_fractol *fractol);
 int				calculate_julia(double x, double y, t_fractol *fractol);
 int				calculate_burning_ship(double x, double y, t_fractol *data);
